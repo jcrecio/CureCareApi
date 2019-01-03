@@ -1,0 +1,32 @@
+{
+  "name": "curecareapi",
+  "version": "1.0.0",
+  "description": "Rest api to get patient data",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcrecio/CureCareApi.git"
+  },
+  "keywords": [
+    "patient",
+    "medical",
+    "medicine",
+    "doctor",
+    "data",
+    "care",
+    "health"
+  ],
+  "author": "Juan Carlos Recio Abad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcrecio/CureCareApi/issues"
+  },
+  "homepage": "https://github.com/jcrecio/CureCareApi#readme",
+  "dependencies": {
+    "express": "*"
+  }
+}
