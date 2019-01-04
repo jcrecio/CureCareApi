@@ -11,5 +11,10 @@ exports.insertPatient = function(req, res) {
 
 exports.updatePatient = function(req, res) {
   repo.updatePatient(req.body);
-  res.send('Inserted patient:' + req.params.patientId);
+  res.send('Updated patient:' + req.params.patientId);
+};
+
+exports.removePatient = function(req, res) {
+  repo.removePatient(req.params.patientId);
+  res.send('Updated patient:' + req.params.patientId);
 };
