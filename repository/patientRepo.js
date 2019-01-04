@@ -1,14 +1,13 @@
-const MongoClient = require('mongodb').MongoClient;
+const databaseAdapter = require('../database/databaseAdapter');
 
-const mongoDbUrl = 'mongodb://localhost:27017';
+module.exports.getPatient = (patientId) => databaseAdapter.connect()
+    .then(database => database.collection('patients').findOne({ patientId: patientId }))
+    .catch(function (err) {});
 
-const dbName = 'curecare';
+module.exports.insertPatient = (patient) => databaseAdapter.connect()
+    .then(database => database.collection('patients').insertOne(patient))
+    .catch(function (err) {});
 
-module.exports.insert = function (patient) {
-    MongoClient.connect(mongoDbUrl, function (err, client) {
-        const db = client.db(dbName);
-        db.collection('patients').insertOne(patient, function (err, r) {
-            client.close();
-        });
-    });
-};
+module.exports.updatePatient = (patient) => databaseAdapter.connect()
+    .then(database => database.collection('patients').update(patient))
+    .catch(function (err) {});
