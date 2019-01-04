@@ -1,17 +1,18 @@
-{
+
+let patientData = {
     name,
     gender,
     address,
     city,
     country,
-    phoneNumbers = [],
+    phoneNumbers: [],
     email,
     birthDate,
     height,
     weight,
     arterialPressure,
     bloodType,
-    emergencyContacts = [{
+    emergencyContacts: [{
         name,
         relation,
         phoneNumber,
@@ -21,12 +22,12 @@
         {
             name,
             reaction,
-            medicinesAssociated = []
+            medicinesAssociated: []
         }
     ],
     hasSufferedAnafylaxis,
     history = {
-        medicines = [
+        medicines: [
             {
                 name,
                 dose,
@@ -40,12 +41,12 @@
         smoker,
         smokingFrequency,
         drinksAlcohol,
-        recentIllnesses = [],
-        recentOperations = [],
-        recentHospitalizations = [],
+        recentIllnesses: [],
+        recentOperations: [],
+        recentHospitalizations: [],
         hasExposedContagiousIllness,
         asmha,
-        asmhaMedicaments = [],
+        asmhaMedicaments: [],
         diabetes,
         alimentaryConstrains: [],
         highPressureHistory: [
@@ -65,7 +66,7 @@
         epa,
         eca,
         medicalConditionNotSpecifiedPreviously,
-        physicalConstrains = [],
-        physicologicalConstrains = []
+        physicalConstrains: [],
+        physicologicalConstrains: []
     }
-}
+};
