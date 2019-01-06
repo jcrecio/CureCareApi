@@ -14,6 +14,6 @@ module.exports.updatePatient = (patient) => connect()
     .then(database => database.collection('patients').updateOne(patient))
     .catch(function (err) {});
 
-module.exports.removePatient = (patient) => connect()
+module.exports.deletePatient = (patient) => connect()
     .then(database => database.collection('patients').deleteOne(patient))
     .catch(function (err) {});

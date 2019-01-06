@@ -14,7 +14,7 @@ exports.updatePatient = function(req, res) {
   res.send('Updated patient:' + req.params.patientId);
 };
 
-exports.removePatient = function(req, res) {
-  repo.removePatient(req.params.patientId);
+exports.deletePatient = function(req, res) {
+  repo.deletePatient(req.params.patientId);
   res.send('Updated patient:' + req.params.patientId);
 };

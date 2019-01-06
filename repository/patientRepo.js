@@ -10,4 +10,4 @@ module.exports.insertPatient = (patient) => databaseAdapter.insertPatient(patien
 
 module.exports.updatePatient = (patient) => databaseAdapter.updatePatient(patient); // map here what needed
 
-module.exports.removePatient = (patientId) => databaseAdapter.removePatient(patientId)
+module.exports.deletePatient = (patientId) => databaseAdapter.deletePatient(patientId)

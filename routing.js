@@ -1,7 +1,12 @@
+const patientController = require('./controller/patientController');
+
 module.exports = function(app) {
-  const patientController = require('../controller/patientController');
 
   app.route('/patients/:patientId')
-     .get(patientController.getPatient)
-     .post(patientController.insertPatient);
+    .get(patientController.getPatient)
+    .put(patientController.updatePatient)
+    .delete(patientController.deletePatient);
+
+  app.route('/patients')
+    .post(patientController.insertPatient);
 };
