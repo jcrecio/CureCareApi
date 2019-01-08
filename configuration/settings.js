@@ -1,5 +1,5 @@
-module.exports.settings = function() {
-    return {
-        databaseUrl: '127.0.0.1:27017/cureCarePatient'
-    }
+module.exports.settings = {
+    databaseUrl: 'localhost',
+    databasePort: 27017,
+    databasePatients: 'databasePatients'
 }
