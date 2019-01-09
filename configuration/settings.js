@@ -1,5 +1,10 @@
 module.exports.settings = {
-    databaseUrl: 'localhost',
-    databasePort: 27017,
-    databasePatients: 'databasePatients'
+    endpoint: {
+        port: 3000
+    },
+    database: {
+        url: 'mongodb://localhost',
+        port: 27017,
+        patients: 'databasePatients'
+    }
 }

@@ -1,16 +1,11 @@
 const MongoClient = require('mongodb').MongoClient;
 const Server = require('mongodb').Server;
-const configuration = require('../configuration/settings');
+const configuration = require('../configuration/settings').settings.database;
 
 const connect = () => {
-    // const mongoClient = MongoClient.connect(
-    //     new Server(configuration.settings.databaseUrl, configuration.settings.databasePort),
-    //     { useNewUrlParser: true });
+    const url = `${configuration.url}:${configuration.port}/`;
 
-    const url = "mongodb://localhost:27017/";
-    
-    const mongoClient = MongoClient.connect(url);
-    return mongoClient;
+    return MongoClient.connect(url);
 }
 
 module.exports.getPatient = (patientId) => connect()
@@ -18,9 +13,7 @@ module.exports.getPatient = (patientId) => connect()
     .catch(function (err) { });
 
 module.exports.insertPatient = (patient) => connect()
-    .then(client => {
-        return client.db(configuration.settings.databasePatients).collections('patients').insertOne(patient);
-    })
+    .then(client => client.db(configuration.settings.databasePatients).collection('patients').insertOne(patient))
     .catch(function (err) { console.log(err); });
 
 module.exports.updatePatient = (patient) => connect()
