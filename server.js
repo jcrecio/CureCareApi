@@ -6,7 +6,7 @@ const configuration = require('./configuration/settings').settings.endpoint;
 let app = configure();
 let port = process.env.PORT || configuration.port;
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`Node server running on http://${configuration.url}:${port}`);
 });
 
@@ -17,4 +17,8 @@ function configure() {
   routing(app);
 
   return app;
-}  
+}
+
+process.on('uncaughtException', (err) => {
+  fs.writeSync(1, `Caught exception: ${err}\n`);
+});
