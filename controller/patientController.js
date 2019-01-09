@@ -3,7 +3,7 @@ const patientService = require('../service/patientService');
 const configuration = require('../configuration/settings').settings.endpoint;
 
 exports.getPatient = function (req, res) {
-  res.send('id:' + req.params.patientId);
+  return patientService.getPatient(req.query);
 };
 
 exports.insertPatient = function (req, res) {

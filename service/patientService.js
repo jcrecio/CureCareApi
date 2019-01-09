@@ -8,6 +8,10 @@ exports.insertPatient = function (bodyRequest) {
         .catch(err => { console.error('Service error: ', err); });
 }
 
+exports.getPatient = function(query) {
+    
+}
+
 function validatePatientData(bodyRequest) {
     let errors = [];
     if (!bodyRequest.patientId) {
