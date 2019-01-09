@@ -1,12 +1,15 @@
 let repo = require('../repository/patientRepo');
+const patientService = require('../service/patientService');
 
 exports.getPatient = function(req, res) {
   res.send('id:' + req.params.patientId);
 };
 
 exports.insertPatient = function(req, res) {
-  repo.insertPatient(req.body);
-  res.send('Inserted patient:' + req.params.patientId);
+  patientService.insertPatient(req.body);
+
+  res.statusCode = 201;
+  res.send('Inserted patient');
 };
 
 exports.updatePatient = function(req, res) {

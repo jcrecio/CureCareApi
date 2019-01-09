@@ -1,15 +1,20 @@
 const express = require('express');
 const routing = require('./routing');
 const bodyParser = require('body-parser');
+const configuration = require('./configuration/settings').settings.endpoint;
 
-let app = express();
+let app = configure();
+let port = process.env.PORT || configuration.port;
 
-app.use(bodyParser.json());
+app.listen(port, function () {
+  console.log(`Node server running on http://${configuration.url}:${port}`);
+});
 
-let port = process.env.PORT || 3000;
+function configure() {
+  let app = express();
 
-routing(app);
+  app.use(bodyParser.json());
+  routing(app);
 
-app.listen(port, function() {
-    console.log("Node server running on http://localhost:3000");
-  });
+  return app;
+}  
