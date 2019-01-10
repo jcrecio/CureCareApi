@@ -23,8 +23,8 @@ exports.getPatient = function (req, res) {
     })
     .catch(err => {
       requestHandler.handleResponse(res, {
-        responseCode: 200, 
-        content: patient, 
+        responseCode: 400, 
+        content: err, 
         log: logger.info});
     });
 };
