@@ -8,7 +8,7 @@ const connect = () => {
 }
 
 module.exports.getPatient = (patientId) => connect()
-    .then(database => database.collection('patients').findOne({ patientId: patientId }))
+    .then(client => getPatientsCollection(client).findOne({ patientId: patientId }))
     .catch(function (err) { });
 
 module.exports.insertPatient = (patient) => connect()
@@ -22,3 +22,7 @@ module.exports.updatePatient = (patient) => connect()
 module.exports.deletePatient = (patient) => connect()
     .then(database => database.collection('patients').deleteOne(patient))
     .catch(function (err) { });
+
+function getPatientsCollection(databaseClient){
+    return databaseClient.db(configuration.databasePatients).collection('patients');
+}

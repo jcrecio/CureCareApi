@@ -1,15 +1,17 @@
 let repo = require('../repository/patientRepo');
 const failOnError = require('../validators/raiseIfErrors').raiseValidationErrors;
+const logger = require('../log/logger');
 
 exports.insertPatient = function (bodyRequest) {
     return failOnError(validatePatientData(bodyRequest))
         .then(() => repo.insertPatient(bodyRequest))
         .then(response => getInsertedPatient(response))
-        .catch(err => { console.error('Service error: ', err); });
+        .catch(err => { logger.error('Service error: ', err); });
 }
 
-exports.getPatient = function(query) {
-    
+exports.getPatient = function(patientId) {
+    return repo.getPatient(patientId)
+        .catch(err => { console.error('Service error: ', err); });
 }
 
 function validatePatientData(bodyRequest) {
