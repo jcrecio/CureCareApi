@@ -1,6 +1,11 @@
-let repo = require('../repository/patientRepo');
+const repo = require('../repository/patientRepo');
 const failOnError = require('../validators/raiseIfErrors').raiseValidationErrors;
 const logger = require('../log/logger');
+
+exports.getPatient = function (patientId) {
+    return repo.getPatient(patientId)
+        .catch(err => { console.error('Service error: ', err); });
+}
 
 exports.insertPatient = function (bodyRequest) {
     return failOnError(validatePatientData(bodyRequest))
@@ -9,9 +14,11 @@ exports.insertPatient = function (bodyRequest) {
         .catch(err => { logger.error('Service error: ', err); });
 }
 
-exports.getPatient = function(patientId) {
-    return repo.getPatient(patientId)
-        .catch(err => { console.error('Service error: ', err); });
+exports.updatePatient = function (patientId, bodyRequest) {
+    return failOnError(validatePatientData(bodyRequest))
+        .then(() => repo.updatePatient(patientId, bodyRequest))
+        .then(response =>  getUpdatedResult(response))
+        .catch(err => { logger.error('Service error: ', err); });
 }
 
 function validatePatientData(bodyRequest) {
@@ -25,4 +32,8 @@ function validatePatientData(bodyRequest) {
 
 function getInsertedPatient(response) {
     return response.ops[0];
+}
+
+function getUpdatedResult(response) {
+    return response.result && response.result.ok;
 }

@@ -10,49 +10,66 @@ exports.getPatient = function (req, res) {
       if (!patient) {
         requestHandler.handleResponse(res, {
           responseCode: 404,
-          content: `Patient with id ${req.params.patientId} not found`, 
-          log: logger.error});
+          content: `Patient with id ${req.params.patientId} not found`,
+        },
+          logger.error);
 
-          return;
+        return;
       }
 
       requestHandler.handleResponse(res, {
-        responseCode: 200, 
-        content: patient, 
-        log: logger.info});
+        responseCode: 200,
+        content: patient,
+      },
+        logger.info);
     })
     .catch(err => {
       requestHandler.handleResponse(res, {
-        responseCode: 400, 
-        content: err, 
-        log: logger.info});
+        responseCode: 400,
+        content: err,
+      },
+        logger.error);
     });
 };
 
 exports.insertPatient = function (req, res) {
   return patientService.insertPatient(req.body)
     .then(patientInserted => {
-      const responseMessage = `Created patient on ${configuration.url}/patients/${patientInserted.patientId}`;
-
-      res.statusCode = 201;
-      res.send(responseMessage);
-
-      console.log(responseMessage);
+      requestHandler.handleResponse(res, {
+        responseCode: 201,
+        content: `Created patient on ${configuration.url}/patients/${patientInserted.patientId}`,
+      },
+        logger.info);
     })
     .catch(err => {
-      const errorMessage = `Service error: ${err}`;
-
-      res.statusCode = 400;
-      res.send(errorMessage);
-
-      console.error(errorMessage);
+      requestHandler.handleResponse(res, {
+        responseCode: 400,
+        content: `Service error: ${err}`,
+      },
+        logger.error);
     });
 };
 
 exports.updatePatient = function (req, res) {
-  repo.updatePatient(req.body);
-  res.send('Updated patient:' + req.params.patientId);
-};
+  return patientService.updatePatient(req.params.patientId, req.body)
+    .then(patient => {
+      if (!patient) {
+        requestHandler.handleResponse(res, {
+          responseCode: 404,
+          content: `Patient with id ${req.params.patientId} not found`,
+        },
+          logger.error);
+
+        return;
+      }
+
+      requestHandler.handleResponse(res, {
+        responseCode: 204,
+        content: `Patient with id ${req.params.patientId} updated`,
+      },
+        logger.info);
+    });
+}
 
 exports.deletePatient = function (req, res) {
   repo.deletePatient(req.params.patientId);

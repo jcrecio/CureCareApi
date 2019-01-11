@@ -1,6 +1,6 @@
-exports.handleResponse = function(res, responseData) {
+exports.handleResponse = function(res, responseData, logAction) {
     res.statusCode = responseData.responseCode;
     res.send(responseData.content);
   
-    responseData.log(responseData.content);
+    logAction(responseData.content);
   }

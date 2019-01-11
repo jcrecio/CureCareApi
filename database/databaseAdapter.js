@@ -9,20 +9,21 @@ const connect = () => {
 
 module.exports.getPatient = (patientId) => connect()
     .then(client => getPatientsCollection(client).findOne({ patientId: patientId }))
-    .catch(function (err) { });
+    .catch(function (err) { throw ('Get Database error: ', err); });
 
 module.exports.insertPatient = (patient) => connect()
-    .then(client => client.db(configuration.databasePatients).collection('patients').insertOne(patient))
-    .catch(function (err) { console.log('Database error: '. err); });
+    .then(client => getPatientsCollection(client).insertOne(patient))
+    .catch(function (err) { throw ('Insert Database error: ', err); });
 
-module.exports.updatePatient = (patient) => connect()
-    .then(database => database.collection('patients').updateOne(patient))
-    .catch(function (err) { });
+module.exports.updatePatient = (patientId, patient) => connect()
+    .then(client =>
+        getPatientsCollection(client).updateOne({ "patientId": patientId }, { $set: { patient } }))
+    .catch(function (err) { throw ('Update Database error: ', err); });
 
 module.exports.deletePatient = (patient) => connect()
     .then(database => database.collection('patients').deleteOne(patient))
     .catch(function (err) { });
 
-function getPatientsCollection(databaseClient){
+function getPatientsCollection(databaseClient) {
     return databaseClient.db(configuration.databasePatients).collection('patients');
 }

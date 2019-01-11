@@ -7,9 +7,9 @@ exports.validate = function (req, res, next) {
   if (!req.params && !req.params.patientId) {
     requestHandler.handleResponse(res, {
       responseCode: 400,
-      content: `No patientId especified`,
-      log: logger.error
-    });
+      content: `No patientId especified`
+    },
+    logger.error);
   }
 
   next();
