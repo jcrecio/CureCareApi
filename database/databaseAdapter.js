@@ -20,9 +20,9 @@ module.exports.updatePatient = (patientId, patient) => connect()
         getPatientsCollection(client).updateOne({ "patientId": patientId }, { $set: { patient } }))
     .catch(function (err) { throw ('Update Database error: ', err); });
 
-module.exports.deletePatient = (patient) => connect()
-    .then(database => database.collection('patients').deleteOne(patient))
-    .catch(function (err) { });
+module.exports.deletePatient = (patientId) => connect()
+    .then(client => getPatientsCollection(client).deleteOne({ patientId: patientId }))
+    .catch(function (err) { throw ('Delete Database error: ', err); });
 
 function getPatientsCollection(databaseClient) {
     return databaseClient.db(configuration.databasePatients).collection('patients');

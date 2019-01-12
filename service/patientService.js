@@ -21,6 +21,14 @@ exports.updatePatient = function (patientId, bodyRequest) {
         .catch(err => { logger.error('Service error: ', err); });
 }
 
+exports.deletePatient = function (patientId) {
+    return repo.deletePatient(patientId)
+    .then(data => {
+        return getUpdatedResult(data);
+    })
+        .catch(err => { console.error('Service error: ', err); });
+}
+
 function validatePatientData(bodyRequest) {
     let errors = [];
     if (!bodyRequest.patientId) {

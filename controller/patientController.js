@@ -72,6 +72,29 @@ exports.updatePatient = function (req, res) {
 }
 
 exports.deletePatient = function (req, res) {
-  repo.deletePatient(req.params.patientId);
-  res.send('Updated patient:' + req.params.patientId);
+  return patientService.deletePatient(req.params.patientId)
+  .then(patient => {
+    if (!patient) {
+      requestHandler.handleResponse(res, {
+        responseCode: 404,
+        content: `Patient with id ${req.params.patientId} not found`,
+      },
+        logger.error);
+
+      return;
+    }
+
+    requestHandler.handleResponse(res, {
+      responseCode: 204,
+      content: `Operation went fine.`,
+    },
+      logger.info);
+  })
+  .catch(err => {
+    requestHandler.handleResponse(res, {
+      responseCode: 400,
+      content: err,
+    },
+      logger.error);
+  });
 };
