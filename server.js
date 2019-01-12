@@ -1,9 +1,9 @@
 const express = require('express');
-const routing = require('./routing');
+const routing = require('./server/routing');
 const bodyParser = require('body-parser');
-const configuration = require('./configuration/settings').settings.endpoint;
-const requestParamsValidator = require('./middleware/requestParamsValidator');
-const logger = require('./log/logger');
+const configuration = require('./server/configuration/settings').settings.endpoint;
+const requestParamsValidator = require('./server/middleware/requestParamsValidator');
+const logger = require('./server/log/logger');
 
 let app = configure();
 let port = process.env.PORT || configuration.port;

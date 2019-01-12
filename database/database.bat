@@ -1,1 +1,0 @@
-start mongod -f .\\database\\databaseConfig.conf
