@@ -30,6 +30,9 @@
   "dependencies": {
     "body-parser": "1.18.3",
     "express": "4.16.4",
+    "gulp": "4.0.0",
+    "gulp-concat": "2.6.1",
+    "gulp-cli": "2.0.1",
     "mongodb": "3.1.10"
   }
 }
