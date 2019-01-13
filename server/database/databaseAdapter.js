@@ -1,5 +1,4 @@
 const MongoClient = require('mongodb').MongoClient;
-const Server = require('mongodb').Server;
 const configuration = require('../configuration/settings').settings.database;
 
 const connect = () => {
@@ -16,8 +15,7 @@ module.exports.insertPatient = (patient) => connect()
     .catch(function (err) { throw ('Insert Database error: ', err); });
 
 module.exports.updatePatient = (patientId, patient) => connect()
-    .then(client =>
-        getPatientsCollection(client).updateOne({ "patientId": patientId }, { $set: { patient } }))
+    .then(client => getPatientsCollection(client).updateOne({ "patientId": patientId }, { $set: patient }))
     .catch(function (err) { throw ('Update Database error: ', err); });
 
 module.exports.deletePatient = (patientId) => connect()

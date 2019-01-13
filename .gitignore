@@ -1,6 +1,8 @@
 node_modules
 package-lock.json
 .vscode
-database/db/**
-database/log/**
+server/database/db/**
+server/database/log/**
+**/database/db/**
+**/database/log/**
 build

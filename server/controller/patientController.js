@@ -1,4 +1,3 @@
-const repo = require('../repository/patientRepo');
 const patientService = require('../service/patientService');
 const configuration = require('../configuration/settings').settings.endpoint;
 const logger = require('../log/logger');

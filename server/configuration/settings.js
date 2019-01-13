@@ -6,6 +6,7 @@ module.exports.settings = {
     database: {
         url: 'mongodb://localhost',
         port: 27017,
-        databasePatients: 'databasePatients'
+        databasePatients: 'databasePatients',
+        databaseLog: 'databaseLog'
     }
 }

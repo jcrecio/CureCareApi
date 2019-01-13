@@ -1,1 +1,1 @@
-start mongod -f .\\database\\databaseConfig.conf
+start mongod -f .\\server\\database\\databaseConfig.conf

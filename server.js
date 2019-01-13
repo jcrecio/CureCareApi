@@ -21,3 +21,5 @@ function configure() {
 
   return app;
 }
+
+var a = 5;
