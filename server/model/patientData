@@ -2,6 +2,7 @@ let patientData = {
     patientId,
     name,
     gender,
+    age,
     address,
     city,
     country,

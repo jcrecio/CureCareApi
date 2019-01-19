@@ -8,5 +8,8 @@ module.exports.settings = {
         port: 27017,
         databasePatients: 'databasePatients',
         databaseLog: 'databaseLog'
+    },
+    cors: {
+        whitelist: ['http://localhost:3001', 'https://localhost:3001']
     }
 }
